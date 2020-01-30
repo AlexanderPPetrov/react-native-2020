@@ -16,7 +16,7 @@ class SideBar extends Component {
                 item={item}
                 navigation={this.props.navigation}
             />}
-            keyExtractor={(item, index) => item.id}
+            keyExtractor={item => item.route}
         />
     }
     render = () =>
@@ -42,36 +42,30 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
         backgroundColor: '#3a9384',
         borderBottomWidth: 1,
-        marginBottom: 15,
     },
     header: {
         fontSize: 22,
         fontWeight: 'bold',
     }
 });
-
 const menuItems = [
     {
         name: "Начало",
         route: "Home",
-        id: "1",
-        color: colors.home,
         icon: <FontAwesome
             style={styles.icon}
             name="home"
             size={16}
-            color={colors.textSecondary}/>,
+            color="#ffffff"/>,
     },
     {
         name: "Информация",
         route: "Info",
-        id: "2",
-        color: colors.info,
         icon: <Entypo
             style={styles.icon}
             name="info"
             size={16}
-            color={colors.textSecondary}/>,
+            color="#ffffff"/>,
     },
 
 

@@ -31,7 +31,6 @@ export default class App extends React.Component {
 
     _loadResourcesAsync = async () => {
         return Promise.all([
-
             // Load images and cache them
             Asset.loadAsync([
                 require('./assets/images/drawer_header.png'),

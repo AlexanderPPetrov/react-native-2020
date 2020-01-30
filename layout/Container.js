@@ -11,8 +11,7 @@ export default class Container extends React.Component {
 
     render = () =>
         <View style={styles.container}>
-            <LinearGradient style={styles.gradient} colors={[colors.background.light, colors.background.dark]}>
-            </LinearGradient>
+            <LinearGradient style={styles.gradient} colors={[colors.background.light, colors.background.dark]}/>
             {this.props.children}
         </View>
 }

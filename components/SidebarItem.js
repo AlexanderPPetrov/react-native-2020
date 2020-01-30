@@ -6,6 +6,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
+import Colors from '../constants/Colors';
+
 class SidebarItem extends React.Component {
 
     menuItemPressed = () => {
@@ -17,7 +19,7 @@ class SidebarItem extends React.Component {
             style={styles.listItem}
             onPress={this.menuItemPressed}
         >
-            <View style={[styles.iconContainer, {backgroundColor: this.props.item.color}]}>
+            <View style={styles.iconContainer}>
                 {this.props.item.icon}
             </View>
             <Text style={styles.label}>{this.props.item.name}</Text>
@@ -29,25 +31,24 @@ const styles = StyleSheet.create({
     listItem: {
         flex: 1,
         flexDirection: 'row',
-        marginVertical: 3,
         alignItems: 'center',
-        paddingVertical: 5
+        paddingVertical: 10,
+        borderBottomColor: Colors.borderLight,
+        borderBottomWidth: 1,
     },
     label: {
         fontSize: 16,
-        color: '#2e2e2e'
+        color: Colors.textDark
     },
     activeLabel: {
-        color: '#000000'
-    },
-    sidebarItemActive: {
-        backgroundColor: '#7eba9b'
+        color: '#ffffff'
     },
     iconContainer: {
         borderRadius: 50,
         width: 30,
         height: 30,
         marginHorizontal: 10,
+        backgroundColor: Colors.iconColor,
         alignItems: 'center',
         justifyContent: 'center',
     }
