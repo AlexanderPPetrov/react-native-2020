@@ -44,7 +44,7 @@ export default function InfoScreen() {
                 onChangeText={text=>setDescription(text)} 
                 style={[styles.input, styles.textArea]} 
             />
-            <Button onPress={submit} />
+            <Button onPress={submit} title="Add card" />
         </Layout>
     )
 }

@@ -15,7 +15,7 @@ const initialState = [
     {
         title: "Test 2",
         description: "Description for test 2"
-    }
+    },
 ];
 
 const cardReducer = function(state = initialState, action) {
