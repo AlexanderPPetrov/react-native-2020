@@ -1,11 +1,31 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {
+    Text,
+    TextInput,
+    StyleSheet
+} from 'react-native';
+import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
+import Button from '../components/Button';
 
-export default class InfoScreen extends React.Component {
+export default function InfoScreen() {
 
-    render = () =>
+    
+    return (
         <Layout>
-            <Text>Test</Text>
+            <Text>Enter card details:</Text>
+            <TextInput style={styles.input} />
+            <Button />
         </Layout>
+    )
 }
+
+const styles = StyleSheet.create({
+    input: {
+        backgroundColor: '#eee',
+        borderColor: Colors.borderLight,
+        borderWidth: 1,
+        height: 50,
+        paddingHorizontal: 10,
+    },
+});
