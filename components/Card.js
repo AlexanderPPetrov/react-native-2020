@@ -5,6 +5,7 @@ import {
     StyleSheet
 } from 'react-native';
 import Button from './Button';
+import ButtonOutlined from './ButtonOutlined';
 
 class Card extends React.Component {
 
@@ -16,28 +17,34 @@ class Card extends React.Component {
             <Text style={styles.description}>
                 {this.props.description}
             </Text>
-            <Button title="View Details"></Button>
+            <View style={styles.cardFooter}>
+                <Button title="View Details"></Button>
+                <ButtonOutlined title="Delete Card"></ButtonOutlined>
+            </View>
         </View>
 }
 
 
 const styles = StyleSheet.create({
     card: {
-       backgroundColor: '#ffffff',
-       padding: 15,
-       borderRadius: 4,
-       borderColor: '#d1d1d1',
-       borderWidth: 1,
-       marginBottom: 10
+        backgroundColor: '#ffffff',
+        padding: 15,
+        borderRadius: 4,
+        borderColor: '#d1d1d1',
+        borderWidth: 1,
+        marginBottom: 10
     },
     title: {
-        fontSize: 18,
+        fontSize: 20,
         color: "#000000",
         marginBottom: 5
     },
     description: {
         color: "#666666",
-        marginBottom: 15
+        paddingVertical: 15
+    },
+    cardFooter: {
+        flexDirection: "row"
     }
 })
 

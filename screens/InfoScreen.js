@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {
     Text,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    View,
+    ScrollView
 } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,26 +32,34 @@ export default function InfoScreen() {
 
     return (
         <Layout>
-            <Text>Enter card title:</Text>
-            <TextInput 
-                value={title} 
-                onChangeText={text=>setTitle(text)} 
-                style={styles.input} 
-            />
-            <Text>Enter card description:</Text>
-            <TextInput 
-                value={description} 
-                numberOfLines={5}
-                multiline={true}
-                onChangeText={text=>setDescription(text)} 
-                style={[styles.input, styles.textArea]} 
-            />
-            <Button onPress={submit} title="Add card" />
+            <ScrollView>
+                <View style={styles.infoContainer}>
+                    <Text>Enter card title:</Text>
+                    <TextInput
+                        value={title}
+                        onChangeText={text=>setTitle(text)}
+                        style={styles.input}
+                    />
+                    <Text>Enter card description:</Text>
+                    <TextInput
+                        value={description}
+                        numberOfLines={5}
+                        multiline={true}
+                        onChangeText={text=>setDescription(text)}
+                        style={[styles.input, styles.textArea]}
+                    />
+                    <Button onPress={submit} title="Add card" />
+                </View>
+            </ScrollView>
         </Layout>
     )
 }
 
 const styles = StyleSheet.create({
+    infoContainer: {
+        padding: 15,
+        backgroundColor: "#ffffff",
+    },
     input: {
         backgroundColor: '#eee',
         borderColor: Colors.borderLight,

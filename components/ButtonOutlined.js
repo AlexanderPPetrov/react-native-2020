@@ -1,9 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { LinearGradient } from "expo-linear-gradient";
 import Colors from '../constants/Colors';
 
-function Button(props) {
+function ButtonOutlined(props) {
 
     return (
         <TouchableOpacity 
@@ -11,28 +10,25 @@ function Button(props) {
             activeOpacity={.7}
             style={[styles.button, props.style]}
         >
-            <LinearGradient start={[0, 0]} end={[1, 0]} style={styles.gradient} colors={[Colors.secondary, Colors.primary]}>
-                <Text style={styles.buttonText}>{props.title}</Text>
-            </LinearGradient>
+            <Text style={styles.buttonText}>{props.title}</Text>
         </TouchableOpacity>
     )
 }
 const styles = StyleSheet.create({
     button: {
         marginHorizontal: 5,
-        flex: 1
+        flex: 1,
+        borderRadius: 30,
+        height: 45,
+        justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: Colors.danger
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white',
+        color: Colors.danger,
         textAlign: 'center'
-    },
-    gradient: {
-        borderRadius: 30,
-        height: 45,
-        justifyContent: 'center'
     }
-
 });
-export default Button;
+export default ButtonOutlined;
