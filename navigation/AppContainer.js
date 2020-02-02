@@ -8,13 +8,15 @@ import HomeScreen from '../screens/HomeScreen';
 import InfoScreen from '../screens/InfoScreen';
 import SideBar from '../components/SideBar';
 import UserScreen from '../screens/UserScreen';
+import CoutryDetailScreen from '../screens/CountryDetailScreen';
 
 
 const Drawer = createDrawerNavigator(
     {
         Home: {screen: HomeScreen},
         Info: {screen: InfoScreen},
-        User: { screen: UserScreen }
+        User: { screen: UserScreen },
+        CountryDetail: { screen: CoutryDetailScreen },
     },
     {
         initialRouteName: "Home",
@@ -29,7 +31,8 @@ const RootStack = createStackNavigator(
         },
         Home: {screen: HomeScreen},
         Info: {screen: InfoScreen},
-        User: { screen: UserScreen }
+        User: { screen: UserScreen },
+        CountryDetail: { screen: CoutryDetailScreen },
     },
     {
         initialRouteName: "Drawer",

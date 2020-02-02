@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     gradient: {
-        borderRadius: 30,
+        borderRadius: 23,
         height: 45,
         justifyContent: 'center'
     }
