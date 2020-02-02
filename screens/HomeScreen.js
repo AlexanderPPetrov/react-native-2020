@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     View,
     Text,
     FlatList,
-    Modal,
     StyleSheet,
     ActivityIndicator
 } from 'react-native';
@@ -16,8 +15,10 @@ import Layout from '../layout/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import ButtonOutlined from '../components/ButtonOutlined';
+import Modal from '../components/Modal';
 
 const HomeScreen = () => {
+    const [modalIsVisible, setModalIsVisible] = useState(false);
     const countries = useSelector(state => state.countries);
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
@@ -38,20 +39,24 @@ const HomeScreen = () => {
                 dispatch(setLoading(false));
             },1000);
         }
-};
+    };
 
     useEffect(()=>{
         getContries();
         
     }, []);
     
+    function handleDelete() {
+        setModalIsVisible(true);
+    }
     
     const renderCard = ({item: card}) => {
         return <Card 
-            title={card.title} 
-            alpha2Code={card.alpha2Code}
-             description={card.description} 
-            />
+                    title={card.title} 
+                    alpha2Code={card.alpha2Code}
+                    description={card.description}
+                    onDeletePressed={handleDelete}
+                />
     }
 
     return ( 
@@ -64,17 +69,12 @@ const HomeScreen = () => {
                 />
             }
             <Modal
-                visible={true}
-                transparent={true}
+                visible={modalIsVisible}
             >
-                <View style={styles.overlay}>
-                    <View style={styles.modalContent}>
-                        <Text style={styles.modalTitle}>Are you sure?</Text>
-                        <View style={styles.row}>
-                            <Button title="Yes" />
-                            <ButtonOutlined title="No" />
-                        </View>
-                    </View>
+                <Text style={styles.modalTitle}>Are you sure?</Text>
+                <View style={styles.row}>
+                    <Button title="Yes" />
+                    <ButtonOutlined title="No" />
                 </View>
             </Modal>
         </Layout>
@@ -83,18 +83,6 @@ const HomeScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    overlay: {
-        flex:1,
-        backgroundColor: 'rgba(0, 0, 0, .7)',
-        justifyContent: 'center',
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        borderRadius: 6,
-        marginHorizontal: 30,
-        padding: 20,
-        elevation: 3
-    },
     modalTitle: {
         fontSize: 18,
         marginBottom: 25,
