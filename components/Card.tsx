@@ -7,19 +7,34 @@ import {
 import { withNavigation } from 'react-navigation'; 
 import Button from './Button';
 import ButtonOutlined from './ButtonOutlined';
+import { DataType } from "../screens/CountryDetailScreen";
 
-class Card extends React.PureComponent {
+type CardProps = {
+    onDeletePressed: () => void,
+    description: string,
+} & DataType;
+
+type CardState = {
+    title?: string
+}
+
+class Card extends React.Component<CardProps, CardState> {
     constructor(props){
         super(props);
+        this.state = {
+            
+        };
         
         this.openDetails = this.openDetails.bind(this);
     }
 
     openDetails(){
-        this.props.navigation.navigate('CountryDetail', {
-            alpha2Code: this.props.alpha2Code
-        });
+        // this.props.navigation.navigate('CountryDetail', {
+        //     alpha2Code: this.props.alpha2Code
+        // });
     }
+
+    someFunction = (x: number) =>  x *2;
 
     render = () =>
         <View style={styles.card}>

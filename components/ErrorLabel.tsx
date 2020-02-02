@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function ErrorLabel(props) {
+type ErrorLabelProps = {
+    description: string,
+    title?: string
+};
+
+export default function ErrorLabel(props: ErrorLabelProps) {
     return (
         <View style={styles.container}>
             <Text style={[styles.text, styles.heading]}>{props.title}</Text>

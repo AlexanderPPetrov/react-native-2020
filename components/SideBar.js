@@ -1,11 +1,8 @@
 import React, {Component} from "react";
-import {View, Text, StyleSheet, FlatList, Image} from "react-native";
+import {View, StyleSheet, FlatList, Image} from "react-native";
 import Constants from "expo-constants";
 import SidebarItem from "./SidebarItem";
-import {MaterialIcons, FontAwesome, Entypo} from '@expo/vector-icons';
-
-import colors from '../constants/Colors';
-
+import {FontAwesome, Entypo} from '@expo/vector-icons';
 
 class SideBar extends Component {
 

@@ -14,10 +14,12 @@ import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
 import Button from '../components/Button';
 
+type AppendPrepend = 'append' | 'prepend'
+
 export default function InfoScreen() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [direction, setDirection] = useState('append');
+    const [direction, setDirection] = useState<AppendPrepend>('append');
 
     const countries = useSelector(state=>state.countries);
     const dispatch = useDispatch();

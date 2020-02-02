@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { NavigationScreenProp } from 'react-navigation'
 import {
     ScrollView, 
     ActivityIndicator, 
@@ -12,16 +13,25 @@ import API from '../remote';
 import Layout from '../layout/Layout';
 import ErrorLabel from '../components/ErrorLabel';
 
+export type DataType = {
+    name?: string,
+    capital?: string,
+    alpha2Code?: string,
+    title?: string,
+    address?: string
+}
+
+// type ContryDetailsProps = {} & NavigationScreenProp<{}>;
 
 const ContryDetails = (props) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState({});
+    const [data, setData] = useState<DataType>({});
     const [error, setError] = useState({
         hasError: false,
         message: null
     });
 
-    const alpha2Code = props.navigation.getParam('alpha2Code');
+    const alpha2Code = props?.navigation?.getParam('alpha2Code');
 
     useEffect(()=>{
         API
@@ -30,6 +40,7 @@ const ContryDetails = (props) => {
                 setData(response.data);
                 setError({
                     hasError: false,
+                    message: ""
                 });
             })
             .catch(error=>{
