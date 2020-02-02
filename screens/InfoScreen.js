@@ -4,11 +4,12 @@ import {
     TextInput,
     StyleSheet,
     View,
+    Picker,
     ScrollView
 } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
-
+import {setCountries} from '../redux/actions/countries';
 import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
 import Button from '../components/Button';
@@ -16,31 +17,38 @@ import Button from '../components/Button';
 export default function InfoScreen() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [direction, setDirection] = useState('append');
 
-    const cards = useSelector(state=>state.cards);
+    const countries = useSelector(state=>state.countries);
     const dispatch = useDispatch();
 
     function submit() {
-        dispatch({
-            type: 'SET_CARDS',
-            payload: [...cards, {
-                title,
-                description
-            }]
-        });
+        const newItem = {
+            title,
+            description,
+            alpha2Code: 'bg'
+        };
+        const newCountries = 
+            direction === 'append' 
+                ? [...countries, newItem] 
+                : [newItem, ...countries];
+
+        setTitle('');
+        setDescription('');
+        dispatch(setCountries(newCountries));
     }
 
     return (
         <Layout>
             <ScrollView>
                 <View style={styles.infoContainer}>
-                    <Text>Enter card title:</Text>
+                    <Text>Enter country name:</Text>
                     <TextInput
                         value={title}
                         onChangeText={text=>setTitle(text)}
                         style={styles.input}
                     />
-                    <Text>Enter card description:</Text>
+                    <Text>Enter country description:</Text>
                     <TextInput
                         value={description}
                         numberOfLines={5}
@@ -48,6 +56,14 @@ export default function InfoScreen() {
                         onChangeText={text=>setDescription(text)}
                         style={[styles.input, styles.textArea]}
                     />
+                    <Picker 
+                        selectedValue={direction} 
+                        onValueChange={value=>setDirection(value)}
+                        style={styles.picker}
+                    >
+                        <Picker.Item label="Prepend" value="prepend" />
+                        <Picker.Item label="Append" value="append" />
+                    </Picker>
                     <Button onPress={submit} title="Add card" />
                 </View>
             </ScrollView>
@@ -73,5 +89,10 @@ const styles = StyleSheet.create({
         height: 150,
         paddingVertical: 10,
         textAlignVertical: 'top'
+    },
+    picker: {
+        borderColor: '#333333',
+        borderWidth: 1,
+        marginBottom: 15,
     }
 });
