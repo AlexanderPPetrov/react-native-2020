@@ -1,33 +1,11 @@
 import React from 'react';
 import {Platform, StatusBar, StyleSheet, View, SafeAreaView } from 'react-native';
 import {AppLoading} from 'expo';
-import * as Font from 'expo-font';
 import {Asset} from 'expo-asset';
 import AppContainer from './navigation/AppContainer';
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from "react-redux";
-
-const initialState = [
-    {
-        title: "Test 1",
-        description: "Description for test 1"
-    },
-    {
-        title: "Test 2",
-        description: "Description for test 2"
-    },
-];
-
-const cardReducer = function(state = initialState, action) {
-    switch(action.type) {
-        case "SET_CARDS": return [...action.payload]
-        default: return state;
-    }
-}
-
-const rootReducer = combineReducers({
-    cards: cardReducer
-});
+import rootReducer from './redux/reducers';
 
 const store = createStore(rootReducer);
 

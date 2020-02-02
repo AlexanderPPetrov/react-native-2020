@@ -5,13 +5,13 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux";
 import axios from 'axios';
+import {setCountries} from '../redux/actions/countries';
 
 import Layout from '../layout/Layout';
 import Card from '../components/Card';
-import { resolveUri } from '../node_modules/expo-asset/build/AssetSources';
 
 const HomeScreen = () => {
-    const cards = useSelector(state => state.cards);
+    const countries = useSelector(state => state.countries);
     const dispatch = useDispatch();
     
     const getContries = async () => {
@@ -23,10 +23,7 @@ const HomeScreen = () => {
                     description: item.subregion
                 }
             });
-            dispatch({
-                type: 'SET_CARDS',
-                payload: newCards
-            });
+            dispatch(setCountries(newCards));
         }
         // await axios.get("https://restcountries.eu/rest/v2/name/Bulgaria");
     };
@@ -47,7 +44,7 @@ const HomeScreen = () => {
     return ( 
         <Layout>
             <FlatList 
-                data={cards}
+                data={countries}
                 renderItem={renderCard}
                 keyExtractor={(_, index)=>`card_${index}`}
                 />

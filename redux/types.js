@@ -1,0 +1,3 @@
+export const SET_COUNTRIES = "SET_COUNTRIES";
+export const LOADING_COUNTRIES = "LOADING_COUNTRIES";
+
