@@ -7,3 +7,10 @@ export function setCountries(countries) {
     }
 }
 
+export function deleteCountry(country) {
+    return {
+        type: types.DELETE_COUNTRY,
+        payload: country
+    }
+}
+

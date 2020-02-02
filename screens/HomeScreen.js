@@ -7,7 +7,7 @@ import {
     ActivityIndicator
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux";
-import {setCountries} from '../redux/actions/countries';
+import {setCountries, deleteCountry} from '../redux/actions/countries';
 import {setLoading} from '../redux/actions/loading';
 import API from '../remote';
 
@@ -19,6 +19,7 @@ import Modal from '../components/Modal';
 
 const HomeScreen = () => {
     const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [selectedCountryForDelete, setCountryForDelete] = useState(null);
     const countries = useSelector(state => state.countries);
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
@@ -46,8 +47,15 @@ const HomeScreen = () => {
         
     }, []);
     
-    function handleDelete() {
+    function handleDelete(item) {
         setModalIsVisible(true);
+        setCountryForDelete(item);
+    }
+    function deleteCard() {
+        if(selectedCountryForDelete){
+            dispatch(deleteCountry(selectedCountryForDelete));
+            setModalIsVisible(false);
+        }
     }
     
     const renderCard = ({item: card}) => {
@@ -55,7 +63,7 @@ const HomeScreen = () => {
                     title={card.title} 
                     alpha2Code={card.alpha2Code}
                     description={card.description}
-                    onDeletePressed={handleDelete}
+                    onDeletePressed={()=>handleDelete(card)}
                 />
     }
 
@@ -73,8 +81,8 @@ const HomeScreen = () => {
             >
                 <Text style={styles.modalTitle}>Are you sure?</Text>
                 <View style={styles.row}>
-                    <Button title="Yes" />
-                    <ButtonOutlined title="No" />
+                    <Button onPress={deleteCard} title="Yes" />
+                    <ButtonOutlined onPress={() => setModalIsVisible(false)} title="No" />
                 </View>
             </Modal>
         </Layout>
